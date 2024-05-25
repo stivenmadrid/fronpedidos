@@ -1,0 +1,27 @@
+/* Define una animación para el botón de logout */
+@keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.1); }
+    100% { transform: scale(1); }
+  }
+  
+  /* Aplica la animación al botón */
+  .logout-button {
+    background-color: transparent;
+    transition: background-color 0.3s;
+    animation: pulse 1s infinite; /* Inicia la animación de pulso en bucle */
+  }
+  
+
+
+.user-avtar {
+    max-width: 800px; /* Cambiar el tamaño máximo de la imagen según sea necesario */
+    height: auto;
+    border-radius: 50%;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s ease;
+}
+
+.user-avtar:hover {
+    transform: scale(1.1);
+}

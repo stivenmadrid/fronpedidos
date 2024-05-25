@@ -1,0 +1,45 @@
+<!-- [Mobile Media Block end] -->
+<ul class="list-unstyled">
+ 
+  <li class="dropdown pc-h-item" ngbDropdown>
+    <!-- Notificaciones de la aplicacion -->
+    <a class="pc-head-link dropdown-toggle arrow-none me-0" ngbDropdownToggle>
+      <i class="ti ti-bell"></i>
+      <span class="badge bg-success pc-h-badge">0</span>
+    </a>
+
+    <div class="dropdown-menu dropdown-notification dropdown-menu-end pc-h-dropdown" ngbDropdownMenu>
+      <div class="dropdown-header d-flex align-items-center justify-content-between">
+        <h5 class="m-0">Notificaciones</h5>
+        <a href="javascript:" class="pc-head-link bg-transparent"><i class="ti ti-circle-check text-success"></i></a>
+      </div>
+      <div class="dropdown-divider"></div>
+  
+    </div>
+  </li>
+  <li class="dropdown pc-h-item header-user-profile" ngbDropdown>
+  <a class="pc-head-link dropdown-toggle arrow-none me-0" ngbDropdownToggle >
+    <img src="https://www.jptecnos.cl/img/comandas/comandas.png" alt="user-image" class="user-avtar wid-40" />
+    <span style="color: #ffff;">{{ name }}</span> 
+  </a>
+  <div class="dropdown-menu dropdown-user-profile dropdown-menu-end pc-h-dropdown" ngbDropdownMenu>
+    <div class="dropdown-header">
+      <div class="d-flex mb-1">
+        <div class="flex-shrink-0">
+          <img src="https://www.jptecnos.cl/img/comandas/comandas.png" alt="user-image" class="user-avtar wid-35" />
+        </div>
+        <div class="flex-grow-1 ms-3">
+          <h6 class="mb-1">TecnoComandas</h6>
+          <span>Tecnobye360°</span>
+        </div>
+        <button class="pc-head-link logout-button" (click)="logout()">
+          <i class="ti ti-power text-danger"></i>
+        </button>
+        
+        
+      </div>
+    </div>
+  </div>
+</li>
+
+</ul>

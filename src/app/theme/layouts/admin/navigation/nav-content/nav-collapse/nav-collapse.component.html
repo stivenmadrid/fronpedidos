@@ -1,0 +1,27 @@
+<!-- nav-collapse.component.html -->
+
+<li data-username="mantis free dashboard" class="nav-item coded-hasmenu" [routerLinkActive]="['active']">
+  <a [routerLinkActive]="['active']" href="javascript:" class="nav-link" (click)="navCollapse($event)">
+    <!-- Mostrar el icono si está presente -->
+    <span *ngIf="item.icon" class="coded-micon">
+      <i class="{{ item.icon }}"></i>
+    </span>
+    <!-- Mostrar el título del elemento de navegación -->
+    <span class="nav-link-text">{{ item.title }}</span>
+  </a>
+  
+  <ul class="coded-submenu" [routerLinkActive]="['active']" [ngClass]="item.classes!">
+    <!-- Renderizar los hijos del elemento de navegación -->
+    <ng-container *ngFor="let childItem of item.children">
+      <ng-container *ngIf="childItem.type === 'group'">
+        <app-nav-group [item]="childItem"></app-nav-group>
+      </ng-container>
+      <ng-container *ngIf="childItem.type === 'collapse'">
+        <app-nav-collapse [item]="childItem"></app-nav-collapse>
+      </ng-container>
+      <ng-container *ngIf="childItem.type === 'item'">
+        <app-nav-item [item]="childItem"></app-nav-item>
+      </ng-container>
+    </ng-container>
+  </ul>
+</li>

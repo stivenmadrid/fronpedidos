@@ -1,0 +1,64 @@
+<div id="contenedor">
+  <div id="contenedorcentrado">
+    <div id="login">
+      <h1>Iniciar sesión</h1>
+
+      <form [formGroup]="loginForm" (ngSubmit)="onSubmit()" class="form-container">
+        <mat-form-field>
+          <mat-label>Nombre de usuario</mat-label>
+          <input
+            matInput
+            formControlName="email"
+            placeholder="Ingrese su nombre de usuario"
+            required
+          />
+          <mat-error *ngIf="loginForm.get('email').hasError('required') && loginForm.get('email').touched">
+            Nombre de usuario es requerido.
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field>
+          <mat-label>Contraseña</mat-label>
+          <input
+            matInput
+            type="password"
+            formControlName="password"
+            placeholder="Ingrese su contraseña"
+            required
+          />
+          <mat-error *ngIf="loginForm.get('password').hasError('required') && loginForm.get('password').touched">
+            Contraseña es requerida.
+          </mat-error>
+        </mat-form-field>
+
+        <!-- Spinner -->
+        <div class="overlay" *ngIf="authenticating">
+          <div class="spinner-container">
+            <div class="spinner"></div>
+            <div class="text">Cargando...</div>
+          </div>
+        </div>
+        
+        <!-- Botón de inicio de sesión -->
+        <button mat-raised-button color="primary" type="submit" [disabled]="authenticating">
+          <span *ngIf="!authenticating">Iniciar sesión</span>
+        </button>
+      </form>
+    </div>
+
+    <div id="derecho">
+      <div class="titulo"></div>
+      <div class="logo-empresa" >
+        <img
+          src="https://www.jptecnos.cl/img/comandas/comandas.png"
+          alt="Logo de la empresa"
+        />
+      </div>
+      <div *ngIf="errorMessage" class="alert alert-danger">
+        {{ errorMessage }}
+      </div>
+      
+      <hr />
+    </div>
+  </div>
+</div>

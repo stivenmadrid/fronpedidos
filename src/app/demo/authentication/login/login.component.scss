@@ -1,0 +1,240 @@
+/* login.component.css */
+
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f3f3f3;
+    margin: 0;
+    padding: 0;
+}
+  
+#contenedor {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+}
+  
+#contenedorcentrado {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: row;
+    max-width: 800px;
+    width: 100%;
+    background-color: #fff;
+    box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    overflow: hidden;
+}
+  
+#login {
+    width: 50%;
+    padding: 40px;
+    box-sizing: border-box;
+}
+  
+h1 {
+    font-size: 2em;
+    color: #333;
+    margin-bottom: 20px;
+}
+  
+mat-form-field {
+    width: 100%;
+    margin-bottom: 20px;
+}
+  
+mat-label {
+    font-size: 1.2em;
+    color: #333;
+}
+  
+mat-input {
+    font-size: 1em;
+    color: #555;
+}
+  
+mat-input::placeholder {
+    color: #888;
+}
+  
+button {
+    font-size: 1.2em;
+    color: #fff;
+    width: 100%;
+    height: 50px;
+    border: none;
+    border-radius: 5px;
+    background-color: #007bff;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+  
+button:hover {
+    background-color: #0056b3;
+}
+  .alert {
+    padding: 15px;
+    border-radius: 8px;
+    color: #fff;
+    background-color: #dc3545;
+    position: fixed;
+    top: -100px;
+    left: 50%;
+    transform: translateX(-50%);
+    animation: slideIn 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards, fadeOut 0.5s 2.5s cubic-bezier(0.55, 0.085, 0.68, 0.53) forwards;
+    z-index: 9999;
+    box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
+    max-width: 300px;
+    width: calc(100% - 40px);
+    text-align: center;
+    font-size: 1.1em;
+}
+
+.alert-danger {
+    background-color: #dc3545;
+}
+
+@keyframes slideIn {
+    0% {
+        top: -100px;
+    }
+    100% {
+        top: 20px;
+    }
+}
+
+@keyframes fadeOut {
+    0% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 0;
+    }
+}
+#derecho {
+    text-align: center;
+    width: 50%;
+    padding: 40px;
+    box-sizing: border-box;
+}
+  
+.titulo {
+    font-size: 2.5em;
+    color: #333;
+    margin-bottom: 20px;
+}
+  
+.logo-empresa {
+    background-color: rgb(255, 245, 245);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 200px; /* ajusta la altura según sea necesario */
+}
+
+.logo-empresa img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 50%;
+    box-shadow: 0px 4px 10px rgba(228, 223, 223, 0.2);
+    transition: transform 0.3s ease;
+}
+
+.logo-empresa img:hover {
+    transform: scale(1.1);
+}
+  
+hr {
+    border-top: 1px solid #ddd;
+    border-bottom: 1px solid #333;
+    margin: 20px 0;
+}
+  
+.pie-form {
+    font-size: 1em;
+    text-align: center;
+    margin-top: 15px;
+}
+  
+.pie-form a {
+    display: block;
+    text-decoration: none;
+    color: #333;
+    margin-bottom: 5px;
+    transition: color 0.3s ease;
+}
+  
+.pie-form a:hover {
+    color: #007bff;
+}
+  
+button {
+    background-color:   #1c2a48; 
+    box-shadow: 0px 4px 8px rgba(40, 167, 69, 0.2); 
+}
+  
+button:hover {
+    background-color: #1c2a4893; 
+}
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5); /* Fondo semitransparente */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 9999; /* Z-index alto para que esté por encima de todo */
+}
+  
+.spinner-container {
+    text-align: center;
+}
+  
+.spinner {
+    width: 40px;
+    height: 40px;
+    border: 4px solid #fff; /* Color del borde */
+    border-top: 4px solid transparent;
+    border-radius: 50%;
+    animation: spin 1.5s linear infinite;
+}
+  
+.text {
+    margin-top: 10px;
+    color: #fff; /* Color del texto */
+}
+  
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+
+@media screen and (max-width: 768px) {
+    #contenedorcentrado {
+      flex-direction: column; /* Cambia la dirección a columna en pantallas pequeñas */
+    }
+  
+    #login,
+    #derecho {
+      width: 100%; /* Haz que ambos elementos ocupen el 100% del contenedor en pantallas pequeñas */
+      padding: 20px; /* Reduce el padding para pantallas pequeñas */
+    }
+  
+    #derecho {
+      margin-top: 20px; /* Añade un margen entre los dos elementos en pantallas pequeñas */
+    }
+  
+    .logo-empresa {
+      order: -1; /* Cambia el orden del elemento para que aparezca primero */
+      margin-bottom: 20px; /* Añade un espacio entre el logo y el formulario */
+    }
+}
