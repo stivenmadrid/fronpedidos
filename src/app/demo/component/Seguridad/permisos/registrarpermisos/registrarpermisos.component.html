@@ -1,0 +1,21 @@
+<h2 mat-dialog-title>Registrar Permiso</h2>
+
+<mat-dialog-content>
+  <div class="form-row">
+    <mat-form-field class="input-field">
+      <input matInput placeholder="Nombre del Permiso" [(ngModel)]="newPermission.name">
+    </mat-form-field>
+  </div>
+</mat-dialog-content>
+
+<mat-dialog-actions>
+  <button mat-button class="cancel-button" (click)="onCancel()">Cancelar</button>
+  <button mat-raised-button color="primary" class="register-button" (click)="registerPermission()" [disabled]="registrorol">Registrar Permiso</button>
+</mat-dialog-actions>
+
+<div class="overlay" *ngIf="registrorol">
+  <div class="spinner-container">
+    <div class="spinner"></div>
+    <div class="text">Guardando...</div>
+  </div>
+</div>

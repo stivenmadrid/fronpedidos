@@ -1,0 +1,13 @@
+.action-button {
+    background-color: #2196F3; /* Color de fondo */
+    color: white; /* Color del texto */
+    border-radius: 50%; /* Forma redonda */
+    padding: 10px; /* Espacio interno */
+    margin-right: 5px; /* Espacio entre botones */
+    transition: background-color 0.3s; /* Transición suave al cambiar color */
+  }
+  
+  .action-button:hover {
+    background-color: #0D47A1; /* Cambiar color al pasar el mouse */
+  }
+  

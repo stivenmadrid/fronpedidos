@@ -1,0 +1,21 @@
+<h2 mat-dialog-title>Editar Permiso</h2>
+
+<mat-dialog-content>
+  <div class="form-row">
+    <mat-form-field>
+      <input matInput placeholder="Nombre del Permiso" [(ngModel)]="permission.name">
+    </mat-form-field>
+
+    <mat-form-field>
+      <input matInput placeholder="Guardia" [(ngModel)]="permission.guard_name">
+    </mat-form-field>
+  </div>
+
+  <!-- Agrega más campos de acuerdo a tu modelo de permiso -->
+
+</mat-dialog-content>
+
+<mat-dialog-actions>
+  <button mat-button (click)="onCancel()">Cancelar</button>
+  <button mat-raised-button color="primary" (click)="actualizarpermiso()">Guardar</button>
+</mat-dialog-actions>

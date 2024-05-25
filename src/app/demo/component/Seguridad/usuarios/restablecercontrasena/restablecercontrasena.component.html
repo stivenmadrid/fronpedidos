@@ -1,0 +1,24 @@
+<!-- registrarusuarios.component.html -->
+
+<h2 mat-dialog-title>Restablecer contraseña</h2>
+<div class="form-row">
+    <!-- Contraseña -->
+    <mat-form-field class="form-field">
+      <input matInput type="password" placeholder="Contraseña" [(ngModel)]="user.password">
+    </mat-form-field>
+    <!-- Confirmar Contraseña -->
+    <mat-form-field class="form-field">
+      <input matInput type="password" placeholder="Confirmar Contraseña" [(ngModel)]="confirmPassword">
+    </mat-form-field>
+  </div>
+  <mat-dialog-actions>
+    <button mat-button class="cancel-button" (click)="onCancel()">Cancelar</button>
+    <button mat-raised-button color="primary" class="register-button" (click)="resetPassword()" [disabled]="!isPasswordValid()">Restablecer Contraseña</button>
+  </mat-dialog-actions>
+  
+<div class="overlay" *ngIf="">
+  <div class="spinner-container">
+    <div class="spinner"></div>
+    <div class="text">Cargando...</div>
+  </div>
+</div>

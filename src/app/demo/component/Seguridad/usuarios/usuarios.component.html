@@ -1,0 +1,53 @@
+<div class="container">
+  <br>
+  <!-- Contenedor de los elementos -->
+  <div style="display: flex; justify-content: space-between; align-items: center;">
+    <!-- Botón para agregar usuarios -->
+    <div class="button-container" style="display: flex; align-items: center;">
+      <button mat-fab color="primary" (click)="openRegistrarUsuariosModal()">
+        <mat-icon aria-hidden="false">person_add</mat-icon>
+      </button>
+      <span style="margin-left: 10px">Registra usuarios</span>
+    </div>
+    <!-- Buscador -->
+    <mat-form-field appearance="fill">
+      <mat-label>Buscar</mat-label>
+      <input matInput (keyup)="applyFilter($event)" placeholder="Escribe para buscar..." />
+      <button mat-button matSuffix mat-icon-button aria-label="Clear" *ngIf="dataSource.filter" (click)="clearFilter()">
+        <mat-icon>close</mat-icon>
+      </button>
+    </mat-form-field>
+  </div>
+  <!-- Tabla de usuarios -->
+  <mat-table [dataSource]="dataSource">
+    <!-- Definición de columnas -->
+    <ng-container *ngFor="let column of displayedColumns" [matColumnDef]="column">
+      <mat-header-cell *matHeaderCellDef>{{ columnAliases[column] }}</mat-header-cell>
+      <mat-cell *matCellDef="let usuario; let rowIndex = index">
+        <!-- Verificar si la columna es 'roles' para mostrar los roles -->
+        <ng-container *ngIf="column === 'roles'">
+          <ng-container *ngFor="let rol of usuario.roles; let lastRol = last"> {{ rol.name }}{{ lastRol ? '' : ', ' }} </ng-container>
+        </ng-container>
+        <!-- Verificar si la columna es 'actions' para mostrar los botones -->
+        <ng-container *ngIf="column === 'actions'">
+          <button mat-icon-button color="primary" (click)="editarUsuario(usuario)">
+            <mat-icon>edit</mat-icon>
+          </button>
+          <button mat-icon-button color="primary" (click)="restablecerContrasena(usuario)">
+            <mat-icon>vpn_key</mat-icon>
+          </button>
+        </ng-container>
+        <!-- Si no es la columna 'roles' ni 'actions', mostrar el contenido normal de la celda -->
+        <ng-container *ngIf="column !== 'roles' && column !== 'actions'">
+          {{ usuario[column] }}
+        </ng-container>
+      </mat-cell>
+    </ng-container>
+    <!-- Encabezado de la tabla -->
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <!-- Fila de la tabla -->
+    <mat-row *matRowDef="let row; columns: displayedColumns"></mat-row>
+  </mat-table>
+  <!-- Agregar paginación -->
+  <mat-paginator [length]="dataSource.data.length" [pageSize]="10" [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
+</div>

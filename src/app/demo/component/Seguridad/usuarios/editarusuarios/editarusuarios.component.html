@@ -1,0 +1,38 @@
+<h2 mat-dialog-title>Actualizar Usuario</h2>
+
+<mat-dialog-content>
+  <div class="form-row">
+    <!-- Nombre -->
+    <mat-form-field class="form-field">
+      <input matInput placeholder="Nombre" [(ngModel)]="user.name" />
+    </mat-form-field>
+    <!-- Correo electrónico -->
+    <mat-form-field class="form-field">
+      <input matInput placeholder="Correo electrónico" [(ngModel)]="user.email" />
+    </mat-form-field>
+  </div>
+
+  <div class="form-row">
+    <mat-form-field class="form-field">
+      <mat-label>Rol</mat-label>
+      <mat-select [(ngModel)]="selectedRole">
+        <mat-option *ngFor="let role of roles" [value]="role.name">{{ role.name }}</mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div>
+</mat-dialog-content>
+
+<mat-dialog-actions>
+  <button mat-button class="cancel-button" (click)="onCancel()">Cancelar</button>
+  <button mat-raised-button color="primary" class="update-user-button" (click)="updateUser()" [disabled]="updatingUser">
+    <span *ngIf="updatingUser; else notUpdatingUser">Actualizando...</span>
+    <ng-template #notUpdatingUser>Actualizar</ng-template>
+  </button>
+</mat-dialog-actions>
+
+<div class="overlay" *ngIf="updatingUser">
+  <div class="spinner-container">
+    <div class="spinner"></div>
+    <div class="text">Actualizando...</div>
+  </div>
+</div>

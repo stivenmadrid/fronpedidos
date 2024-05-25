@@ -1,0 +1,28 @@
+<div class="card">
+  <div class="card-header bg-blue-1000">Seguridad TecnoComanda</div>
+  <div class="card-body">
+    <!-- Contenedor de los tabs -->
+    <div class="container">
+      <mat-tab-group>
+        <mat-tab label="Lista Usuarios">
+            <ng-template matTabContent>
+              <app-usuarios></app-usuarios>
+            </ng-template>
+          </mat-tab>
+
+        <mat-tab label="Lista Roles">
+          <ng-template matTabContent>
+            <app-roles></app-roles>
+          </ng-template>
+        </mat-tab>
+        <mat-tab label="Lista permisos">
+            <ng-template matTabContent>
+              <app-permisos></app-permisos>
+            </ng-template>
+          </mat-tab>
+
+        <!-- Aquí puedes agregar más pestañas si es necesario -->
+      </mat-tab-group>
+    </div>
+  </div>
+</div>

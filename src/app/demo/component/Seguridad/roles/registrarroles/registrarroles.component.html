@@ -1,0 +1,32 @@
+<h2 mat-dialog-title>Registrar rol</h2>
+
+<mat-dialog-content>
+  <div class="form-row">
+    <mat-form-field>
+      <input matInput placeholder="Nombre del Rol" [(ngModel)]="role.name" />
+    </mat-form-field>
+
+    <mat-form-field>
+      <input matInput placeholder="Guardia" [(ngModel)]="role.guard_name" disabled />
+    </mat-form-field>
+  </div>
+
+  <mat-form-field style="width: 100%">
+    <mat-label>Permisos</mat-label>
+    <mat-select [(ngModel)]="selectedPermissions" multiple style="width: 100%">
+      <mat-option *ngFor="let permission of permissions" [value]="permission">{{ permission.name }}</mat-option>
+    </mat-select>
+  </mat-form-field>
+</mat-dialog-content>
+
+<mat-dialog-actions>
+  <button mat-button class="cancel-button" (click)="onCancel()">Cancelar</button>
+  <button mat-raised-button color="primary" class="register-button" (click)="registerRole()" [disabled]="registrorol">Registrar</button>
+</mat-dialog-actions>
+
+<div class="overlay" *ngIf="registrorol">
+  <div class="spinner-container">
+    <div class="spinner"></div>
+    <div class="text">Guardando...</div>
+  </div>
+</div>
