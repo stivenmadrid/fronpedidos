@@ -24,6 +24,9 @@ export class EditarusuariosComponent implements OnInit {
       this.user = { ...data.user };
       this.roles = data.roles;
 
+      // Convertir Notificaciones de "0" o "1" a booleano
+      this.user.Notificaciones = this.user.Notificaciones === '1';
+      
       // Establecer el rol predeterminado en el arreglo de roles
       const selectedRole = this.roles.find((role) => role.name === this.user.role);
       if (selectedRole) {
@@ -36,10 +39,8 @@ export class EditarusuariosComponent implements OnInit {
     // Verificar si el rol actual del usuario existe en el arreglo de roles
     const selectedRole = this.roles.find((role) => role.name === this.user.role);
     if (selectedRole) {
-      // Si el rol existe, establecerlo como el valor seleccionado en el campo de selección de roles
       this.selectedRole = selectedRole.name;
     } else {
-      // Si el rol no existe, seleccionar el primer rol del arreglo como valor predeterminado
       if (this.roles.length > 0) {
         this.selectedRole = this.roles[0].name;
       }
@@ -48,7 +49,7 @@ export class EditarusuariosComponent implements OnInit {
 
   updateUser() {
     this.updatingUser = true;
-  
+
     // Validar los datos manualmente
     const errors = [];
     if (!this.user.name || this.user.name.trim() === '') {
@@ -60,7 +61,7 @@ export class EditarusuariosComponent implements OnInit {
     if (!this.selectedRole) {
       errors.push('El rol es obligatorio.');
     }
-  
+
     if (errors.length > 0) {
       // Si hay errores, mostrar mensaje de error
       const validationErrors = errors.join('<br>');
@@ -72,10 +73,13 @@ export class EditarusuariosComponent implements OnInit {
       this.updatingUser = false; // Restaurar el estado de actualización del usuario
       return;
     }
-  
+
     // Actualizar el rol del usuario con el rol seleccionado por el usuario
     this.user.role = this.selectedRole;
-  
+
+    // Convertir el valor booleano de Notificaciones a "1" o "0"
+    this.user.Notificaciones = this.user.Notificaciones ? '1' : '0';
+
     // Llamar al servicio para actualizar el usuario
     this.usuariosService.actualizarUsuario(this.user).subscribe(
       (response: any) => {
@@ -94,7 +98,6 @@ export class EditarusuariosComponent implements OnInit {
         console.error(error);
         let errorMessage = 'Hubo un problema al actualizar el usuario';
         if (error.error && error.error.error) {
-          // Si hay un mensaje de error específico en la respuesta del servidor, usarlo
           errorMessage = error.error.error;
         }
         Swal.fire({
@@ -106,13 +109,12 @@ export class EditarusuariosComponent implements OnInit {
       }
     );
   }
-  
+
   validateEmail(email: string): boolean {
     // Función para validar el formato del correo electrónico
     const pattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     return pattern.test(email);
   }
-  
 
   onCancel() {
     // Función para cerrar el modal sin realizar ninguna acción

@@ -1,5 +1,3 @@
-// LoginComponent TypeScript
-
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AuthService } from '../../../Service/auth.service';
@@ -37,21 +35,31 @@ export class LoginComponent implements OnInit {
           this.authenticationMessage = 'Autenticación exitosa';
           console.log('Autenticación exitosa:', response);
           this.authenticating = false;
+
+          // Aquí puedes redirigir al usuario a otra página si lo necesitas, por ejemplo:
+          // this.router.navigate(['/dashboard']);
         },
         (error) => {
           console.log('Error en el inicio de sesión:', error);
           this.authenticating = false;
 
+          // Manejar error 401: Credenciales inválidas
           if (error.status === 401) {
             this.errorMessage = 'Credenciales inválidas, verifica e intenta nuevamente';
-          } else {
+          }
+          // Manejar error 403: Usuario inactivo
+          else if (error.status === 403) {
+            this.errorMessage = 'Este usuario está inactivo. Por favor, contacte al administrador.';
+          }
+          // Manejar otros errores
+          else {
             this.errorMessage = 'Error en la autenticación. Por favor, inténtalo de nuevo.';
           }
 
-          // Restablecer la visibilidad de la alerta
+          // Restablecer la visibilidad de la alerta después de 5 segundos
           setTimeout(() => {
             this.errorMessage = '';
-          }, 5000); // Después de 5 segundos
+          }, 5000);
         }
       );
     } else {

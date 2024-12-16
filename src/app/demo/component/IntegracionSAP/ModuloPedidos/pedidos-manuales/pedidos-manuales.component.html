@@ -1,0 +1,91 @@
+<div class="order-details-container">
+  <form (ngSubmit)="onSubmit()" [formGroup]="orderForm">
+    <!-- Encabezados -->
+    <div class="header-container">
+      <mat-form-field appearance="fill">
+        <mat-label>Código Cliente</mat-label>
+        <input matInput formControlName="CodigoCliente" type="text" />
+      </mat-form-field>
+      <mat-form-field appearance="fill">
+        <mat-label>Nombre Cliente</mat-label>
+        <input matInput formControlName="CardName" type="text" />
+      </mat-form-field>
+      <mat-form-field appearance="fill">
+        <mat-label>Fecha Contabilización</mat-label>
+        <input matInput formControlName="FechaContabilizacion" type="date" />
+      </mat-form-field>
+      <mat-form-field appearance="fill">
+        <mat-label>Fecha Entrega</mat-label>
+        <input matInput formControlName="FechaEntrega" type="date" />
+      </mat-form-field>
+    </div>
+
+    <!-- Detalles -->
+    <div class="details-container">
+      <mat-form-field class="form-field-spacing" appearance="fill">
+        <mat-label>Código Artículo</mat-label>
+        <mat-select formControlName="CodArticulo" (selectionChange)="onProductChange($event.value)">
+          <mat-option *ngFor="let producto of productos" [value]="producto.ItemCode">
+            {{ producto.ItemCode }} - {{ producto.ItemName }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <mat-form-field class="form-field-spacing" appearance="fill">
+        <mat-label>Descripción</mat-label>
+        <input matInput formControlName="NombreArticulo" type="text" />
+      </mat-form-field>
+
+      <mat-form-field class="form-field-spacing" appearance="fill">
+        <mat-label>Cantidad</mat-label>
+        <input matInput formControlName="Cantidad" type="number" />
+      </mat-form-field>
+
+      <div class="button-container">
+        <button type="button" mat-raised-button color="accent" (click)="addDetail()">Agregar Línea</button>
+        <button type="button" mat-raised-button color="primary" (click)="onSubmit()">Generar Pedido</button>
+      </div>
+    </div>
+  </form>
+
+  <!-- Tabla de detalles -->
+  <div class="details-table-container" *ngIf="details.length > 0">
+    <h3 class="table-title">Detalles Agregados</h3>
+    <table mat-table [dataSource]="details" class="mat-elevation-z8">
+      <ng-container matColumnDef="CodArticulo">
+        <th mat-header-cell *matHeaderCellDef> Código Artículo </th>
+        <td mat-cell *matCellDef="let element"> {{ element.CodArticulo }} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="DescripcionArticulo">
+        <th mat-header-cell *matHeaderCellDef> Descripción </th>
+        <td mat-cell *matCellDef="let element"> {{ element.NombreArticulo }} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="Cantidad">
+        <th mat-header-cell *matHeaderCellDef> Cantidad </th>
+        <td mat-cell *matCellDef="let element"> {{ element.Cantidad }} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="PrecioTotal">
+        <th mat-header-cell *matHeaderCellDef> Precio Total </th>
+        <td mat-cell *matCellDef="let element"> {{ element.PrecioTotal | currency }} </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+    </table>
+  </div>
+</div>
+
+<!-- Spinner -->
+<div class="overlay" *ngIf="consultandocliente">
+  <div class="spinner-container">
+    <div class="bouncing-loader">
+      <div class="bouncing-ball"></div>
+      <div class="bouncing-ball"></div>
+      <div class="bouncing-ball"></div>
+    </div>
+    <div class="text">Cargando...</div>
+  </div>
+</div>

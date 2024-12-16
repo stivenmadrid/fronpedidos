@@ -1,0 +1,68 @@
+<div class="custom-dialog-container">
+  <div style="display: grid">
+    <input type="file" (change)="onFileChange($event)" accept=".xlsx, .xls" hidden #fileInput />
+
+    <button mat-raised-button color="primary" (click)="fileInput.click()" [disabled]="fileLoaded" *ngIf="!fileLoaded">
+      Importar Pedidos desde Excel
+      <mat-icon>assignment</mat-icon>
+    </button>
+
+    <div class="button-container">
+      <button mat-icon-button color="primary" (click)="grabarOrdenVenta()" *ngIf="fileLoaded" matTooltip="Generar Pedido Interno">
+        <mat-icon>assignment</mat-icon>
+        <span class="button-text">Generar Pedido Interno</span>
+      </button>
+    </div>
+
+    <div class="overlay" *ngIf="generarpedidosgts">
+      <div class="spinner-container">
+        <div class="bouncing-loader">
+          <div class="bouncing-ball"></div>
+          <div class="bouncing-ball"></div>
+          <div class="bouncing-ball"></div>
+        </div>
+        <div class="text">Generando Orden...</div>
+      </div>
+    </div>
+
+    <div class="data-section">
+ 
+      <div *ngIf="encabezadosData.length > 0" class="tabla-container">
+        <h3>Encabezados:</h3>
+        <div class="table-container">
+          <table class="tabla-datos">
+            <thead>
+              <tr>
+                <th *ngFor="let header of encabezadosData[0]">{{ header }}</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let row of encabezadosData.slice(1)">
+                <td *ngFor="let cell of row">{{ cell }}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+
+      <div *ngIf="lineasData.length > 0" class="tabla-container">
+        <h3>Detalle:</h3>
+        <div class="table-container">
+          <table class="tabla-datos">
+            <thead>
+              <tr>
+                <th *ngFor="let header of lineasData[0]">{{ header }}</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let row of lineasData.slice(1)">
+                <td *ngFor="let cell of row">{{ cell }}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

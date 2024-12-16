@@ -1,0 +1,36 @@
+<div class="container-fluid" >
+    <mat-tab-group>
+      <mat-tab>
+        <ng-template mat-tab-label>
+          <mat-icon>pending</mat-icon>
+          <span>Pedidos Pendientes SAP</span>
+        </ng-template>
+        <ng-template matTabContent>
+          <app-lista-pedidos-pendientes-sap style="z-index: 999 !important"></app-lista-pedidos-pendientes-sap>
+        </ng-template>
+      </mat-tab>
+  
+      <mat-tab>
+        <ng-template mat-tab-label>
+          <mat-icon>send</mat-icon>
+          <span>Pedidos enviados SAP</span>
+        </ng-template>
+        <ng-template matTabContent>
+          <app-pedidos-enviados-sap></app-pedidos-enviados-sap>
+        </ng-template>
+      </mat-tab>
+  
+      <mat-tab>
+        <ng-template mat-tab-label>
+          <mat-icon>history</mat-icon>
+          <span>Log de modificaciones</span>
+        </ng-template>
+        <ng-template matTabContent>
+          <app-log-modificaciones-pedidos></app-log-modificaciones-pedidos>
+        </ng-template>
+      </mat-tab>
+    </mat-tab-group>
+  
+  
+  </div>
+  

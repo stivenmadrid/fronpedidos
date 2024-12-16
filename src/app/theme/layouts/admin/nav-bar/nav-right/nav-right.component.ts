@@ -7,7 +7,6 @@ import { AuthService } from '../../../../../Service/auth.service';
   styleUrls: ['./nav-right.component.scss']
 })
 export class NavRightComponent {
-
   name: string; // Propiedad para almacenar el nombre del empleado
   constructor(private authService: AuthService) {}
 
@@ -67,7 +66,7 @@ export class NavRightComponent {
         console.log('Sesión cerrada exitosamente');
         // Puedes redirigir a otra página después del logout si es necesario
       },
-      error => {
+      (error) => {
         console.error('Error al cerrar sesión:', error);
       }
     );

@@ -35,12 +35,15 @@ export class RolesComponent implements OnInit {
   }
 
   obtenerRoles() {
+    this.eliminando = true;
     this.rolesService.obtenerRoles().subscribe(
       (roles: any[]) => {
         this.roles = roles;
         this.dataSource.data = roles;
+        this.eliminando = false;
       },
       error => {
+        this.eliminando = false;
         console.error('Error al obtener roles:', error);
       }
     );

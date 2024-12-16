@@ -1,9 +1,9 @@
-<div class="container">
-  <br>
+<div class="container-fluid">
+  <br />
   <!-- Contenedor de los elementos -->
-  <div style="display: flex; justify-content: space-between; align-items: center;">
+  <div style="display: flex; justify-content: space-between; align-items: center">
     <!-- Botón para agregar usuarios -->
-    <div class="button-container" style="display: flex; align-items: center;">
+    <div class="button-container" style="display: flex; align-items: center">
       <button mat-fab color="primary" (click)="openRegistrarUsuariosModal()">
         <mat-icon aria-hidden="false">person_add</mat-icon>
       </button>
@@ -19,7 +19,7 @@
     </mat-form-field>
   </div>
   <!-- Tabla de usuarios -->
-  <mat-table [dataSource]="dataSource">
+  <mat-table [dataSource]="dataSource" class="table-animation">
     <!-- Definición de columnas -->
     <ng-container *ngFor="let column of displayedColumns" [matColumnDef]="column">
       <mat-header-cell *matHeaderCellDef>{{ columnAliases[column] }}</mat-header-cell>
@@ -28,17 +28,24 @@
         <ng-container *ngIf="column === 'roles'">
           <ng-container *ngFor="let rol of usuario.roles; let lastRol = last"> {{ rol.name }}{{ lastRol ? '' : ', ' }} </ng-container>
         </ng-container>
-        <!-- Verificar si la columna es 'actions' para mostrar los botones -->
+
         <ng-container *ngIf="column === 'actions'">
-          <button mat-icon-button color="primary" (click)="editarUsuario(usuario)">
-            <mat-icon>edit</mat-icon>
+          <button mat-icon-button color="primary" (click)="editarUsuario(usuario)" matTooltip="Editar usuario">
+            <mat-icon>create</mat-icon>
           </button>
-          <button mat-icon-button color="primary" (click)="restablecerContrasena(usuario)">
+
+          <button mat-icon-button  class="custom-color" (click)="restablecerContrasena(usuario)" matTooltip="Restablecer contraseña">
             <mat-icon>vpn_key</mat-icon>
           </button>
+
+          <button mat-icon-button  class="custom-color-inactivar" (click)="inactivarUsuario(usuario)" matTooltip="Inactivar usuario">
+            <mat-icon>cancel</mat-icon>
+          </button>
+        
         </ng-container>
-        <!-- Si no es la columna 'roles' ni 'actions', mostrar el contenido normal de la celda -->
-        <ng-container *ngIf="column !== 'roles' && column !== 'actions'">
+
+        <!-- Si no es la columna 'roles' ni 'actions' ni 'statususer', mostrar el contenido normal de la celda -->
+        <ng-container *ngIf="column !== 'roles' && column !== 'actions' && column !== 'statususer'">
           {{ usuario[column] }}
         </ng-container>
       </mat-cell>
@@ -50,4 +57,17 @@
   </mat-table>
   <!-- Agregar paginación -->
   <mat-paginator [length]="dataSource.data.length" [pageSize]="10" [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
+</div>
+
+
+
+<div class="overlay" *ngIf="updatingUser">
+  <div class="spinner-container">
+    <div class="bouncing-loader">
+      <div class="bouncing-ball"></div>
+      <div class="bouncing-ball"></div>
+      <div class="bouncing-ball"></div>
+    </div>
+    <div class="text">Cargando...</div>
+  </div>
 </div>

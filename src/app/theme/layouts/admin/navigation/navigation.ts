@@ -52,72 +52,53 @@ export const NavigationItems: NavigationItem[] = [
         children: [
           {
             id: 'Generarpedidos',
-            title: 'Generar pedidos',
+            title: 'Generar pedidos SAP',
             type: 'item',
             classes: 'nav-item',
             url: '/Generar-pedidos',
             icon: 'ti ti-shopping-cart',
             
           },
-          {
-            id: 'pedidosliberados',
-            title: 'Pedidos liberados',
-            type: 'item',
-            classes: 'nav-item',
-            url: '/Pedidos-liberados',
-            icon: 'ti ti-shopping-cart'
-          },
-          {
-            id: 'pedidoscocina',
-            title: 'Pedidos cocina',
-            type: 'item',
-            classes: 'nav-item',
-            url: '/Pedidos-cocina',
-            icon: 'ti ti-shopping-cart'
-          }
+          
         ]
       },
       {
-        id: 'Facturacion',
-        title: 'Facturación eletronica',
+        id: 'Producción',
+        title: 'Producción',
         type: 'collapse',
         classes: 'nav-item',
-        url: '/card',
-        icon: 'ti ti-wallet',
+        url: '/breadcrumb',
+        icon: 'ti ti-settings', 
         children: [
+        
           {
-            id: 'Pagos efectuados',
-            title: 'Pagos efectuados',
+            id: 'LineaCero',
+            title: 'Linea Cero',
             type: 'item',
             classes: 'nav-item',
-            url: '/breadcrumb',
-            icon: 'ti ti-wallet'
+            url: '/LineaCero',
+            icon: 'ti ti-lock', 
+            
           }
         ]
       },
+      
       {
         id: 'Administracion',
         title: 'Administración',
         type: 'collapse',
         classes: 'nav-item',
         url: '/breadcrumb',
-        icon: 'ti ti-settings', // Nuevo icono para Administración
+        icon: 'ti ti-settings', 
         children: [
-          {
-            id: 'Inventario',
-            title: 'Inventario',
-            type: 'item',
-            classes: 'nav-item',
-            url: '/Inventarios',
-            icon: 'ti ti-package'
-          },
+        
           {
             id: 'Seguridad',
             title: 'Seguridad',
             type: 'item',
             classes: 'nav-item',
             url: '/Seguridad',
-            icon: 'ti ti-lock', // Nuevo icono para Seguridad
+            icon: 'ti ti-lock', 
             
           }
         ]

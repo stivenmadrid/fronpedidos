@@ -1,0 +1,205 @@
+.order-details-container {
+    padding: 20px;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+  }
+  
+  .header-container, .details-container {
+    margin-bottom: 20px;
+    padding: 20px;
+    background-color: #ffffff;
+    border: 1px solid #dddddd;
+    border-radius: 8px;
+  }
+  
+  .header-title {
+    color: #3f51b5;
+    text-align: center;
+    margin-bottom: 20px;
+    background-color: #e3f2fd;
+    padding: 10px;
+    border-radius: 8px;
+  }
+  .details-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px; /* Espacio entre los elementos */
+  }
+  
+  .details-container mat-form-field {
+    flex: 1 1 calc(33% - 16px); /* Ajusta el ancho y el espacio entre los elementos */
+  }
+  
+  .details-title {
+    color: #f44336;
+    text-align: center;
+    margin-bottom: 20px;
+    background-color: #ffebee;
+    padding: 10px;
+    border-radius: 8px;
+  }
+  
+  .button-container {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 20px;
+  }
+  
+  .details-table-container {
+    margin-top: 20px;
+  }
+  
+  .table-title {
+    color: #009688;
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  .overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 9999;
+    opacity: 1;
+    transition: opacity 0.3s ease;
+  }
+  
+  .spinner-container {
+    text-align: center;
+  }
+  
+  .bouncing-loader {
+    display: flex;
+    justify-content: space-between;
+    width: 80px;
+  }
+  
+  .bouncing-ball {
+    width: 20px;
+    height: 20px;
+    background-color: #fff;
+    border-radius: 50%;
+    animation: bounce 1.5s infinite ease-in-out, pulse 1.5s infinite ease-in-out;
+    box-shadow: 0 0 10px rgba(224, 199, 39, 0.7);
+  }
+  
+  .bouncing-ball:nth-child(2) {
+    animation-delay: 0.3s;
+  }
+  
+  .bouncing-ball:nth-child(3) {
+    animation-delay: 0.6s;
+  }
+  
+  .text {
+    margin-top: 15px;
+    color: #fff;
+    font-size: 18px;
+    font-weight: bold;
+  }
+  
+  @keyframes bounce {
+    0%, 20%, 50%, 80%, 100% {
+      transform: translateY(0);
+    }
+    40% {
+      transform: translateY(-30px);
+    }
+    60% {
+      transform: translateY(-15px);
+    }
+  }
+  
+  @keyframes pulse {
+    0%, 100% {
+      transform: scale(1);
+      box-shadow: 0 0 10px rgba(229, 239, 92, 0.7);
+    }
+    50% {
+      transform: scale(1.2);
+      box-shadow: 0 0 20px rgba(255, 255, 255, 0.9);
+    }
+  }
+  /* estilos generales */
+.header-container, .details-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px; /* Espaciado entre los campos */
+    margin-bottom: 20px;
+  }
+  
+  .form-field-spacing {
+    flex: 1;
+    min-width: 200px; /* Ajusta según tus necesidades */
+  }
+  
+  .button-container {
+    margin-top: 20px;
+  }
+  
+  .details-table-container {
+    margin-top: 20px;
+  }
+  
+  .overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .spinner-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: white;
+  }
+  
+  .bouncing-loader {
+    display: flex;
+    gap: 10px;
+  }
+  
+  .bouncing-ball {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background-color: white;
+    animation: bounce 1.5s infinite ease-in-out;
+  }
+  
+  @keyframes bounce {
+    0%, 100% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(-20px);
+    }
+  }
+  
+  .text {
+    margin-top: 10px;
+  }
+  .input-container {
+    display: flex;
+    align-items: center; /* Alinea verticalmente el contenido */
+    gap: 10px; /* Espaciado entre los elementos */
+  }
+  
+  .add-button {
+    margin-left: 10px; /* Espacio entre el último campo y el botón */
+    padding: 8px 16px; /* Tamaño del botón */
+    border-radius: 50%; /* Botón redondeado */
+    font-size: 18px; /* Tamaño del texto en el botón */
+  }
+  

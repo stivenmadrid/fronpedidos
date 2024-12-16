@@ -1,0 +1,153 @@
+<!-- Tabla de pedidos con botón de eliminar -->
+<div class="table-responsive mt-3">
+  <div class="card">
+    <div class="card-body">
+      <!-- Otros botones y contenido -->
+      <div class="button-container d-flex align-items-center justify-content-between">
+        <div class="d-flex align-items-center">
+          <button mat-raised-button color="primary" class="custom-button" (click)="abrircomponenteImportarPedidos()">
+            <mat-icon aria-hidden="false">upload_file</mat-icon>
+            <span class="ml-2">Importaciones</span>
+          </button>
+          <button mat-raised-button class="image-button" (click)="confirmarGenerarPedidosEnSAP()">
+            <img
+              src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT0jOSrHlXnK_ohV9pqRJVAeA3-Ts3D0TuOwA&s"
+              alt="Imagen de botón SAP"
+              class="boton-imagen"
+            />
+          </button>
+          <button mat-raised-button color="" (click)="exportarPedidosAExcel()">
+            <mat-icon>file_download</mat-icon>
+            Exportar a Excel
+          </button>
+        </div>
+        <mat-checkbox (change)="toggleAllRows($event)" class="example-margin" color="primary">Seleccionar Todo</mat-checkbox>
+
+        <!-- Search input -->
+        <div class="search-container">
+          <mat-form-field class="example-full-width">
+            <mat-label>Buscar...</mat-label>
+            <input matInput (keyup)="applyFilter($event)" placeholder="Buscar....." />
+          </mat-form-field>
+        </div>
+      </div>
+
+      <!-- Tabla -->
+      <div class="table-responsive mt-3">
+        <table mat-table [dataSource]="dataSource" class="mat-elevation-z2 custom-table">
+          <!-- Checkbox Column -->
+          <ng-container matColumnDef="select">
+            <th mat-header-cell *matHeaderCellDef>
+              <mat-checkbox
+                (change)="toggleAllRows($event)"
+                [checked]="selection.hasValue() && isAllSelected()"
+                [indeterminate]="selection.hasValue() && !isAllSelected()"
+                color="primary"
+              >
+              </mat-checkbox>
+            </th>
+            <td mat-cell *matCellDef="let row">
+              <mat-checkbox
+                (click)="$event.stopPropagation()"
+                (change)="onRowCheckboxChange($event, row)"
+                [checked]="selection.isSelected(row)"
+                color="primary"
+              >
+              </mat-checkbox>
+            </td>
+          </ng-container>
+
+          <!-- Acciones Column (incluye botón eliminar) -->
+          <ng-container matColumnDef="Acciones">
+            <th mat-header-cell *matHeaderCellDef>Acciones</th>
+            <td mat-cell *matCellDef="let element">
+              <!-- Botón de eliminar -->
+              <button mat-mini-fab color="warn" (click)="confirmarEliminarPedido(element)" matTooltip="Eliminar Pedido">
+                <mat-icon>delete</mat-icon>
+              </button>
+
+              <!-- Botón de trazabilidad (detalles) -->
+              <button mat-mini-fab color="primary" (click)="abrirdetalleOP(element)" matTooltip="Trazabilidad">
+                <mat-icon aria-hidden="false">search</mat-icon>
+              </button>
+            </td>
+          </ng-container>
+
+          <!-- Other columns -->
+          <ng-container *ngFor="let column of displayedColumns">
+            <ng-container *ngIf="column !== 'select' && column !== 'Acciones'">
+              <ng-container [matColumnDef]="column">
+                <th mat-header-cell *matHeaderCellDef> {{ columnAliases[column] || column }} </th>
+                <td mat-cell *matCellDef="let element" [ngClass]="{'selected-row': selection.isSelected(element)}">
+                  <ng-container [ngSwitch]="column">
+                    <ng-container *ngSwitchDefault>
+                      <!-- Mostrar el contenido específico de la columna 'Tipo_Pedido' -->
+                      <ng-container *ngIf="column === 'Tipo_Pedido'">
+                        <ng-container *ngIf="element.Tipo_Pedido === 'Exportacion'">
+                          <mat-icon class="export-icon">shopping_cart</mat-icon>
+                          <span>Exportación</span>
+                        </ng-container>
+                        <ng-container *ngIf="element.Tipo_Pedido === 'Web-Sary'">
+                          <mat-icon class="web-icon">language</mat-icon>
+                          <span>Web-Sary</span>
+                        </ng-container>
+                        <ng-container *ngIf="element.Tipo_Pedido !== 'Exportacion' && element.Tipo_Pedido !== 'Web-Sary'">
+                          <span>{{ element.Tipo_Pedido }}</span>
+                        </ng-container>
+                      </ng-container>
+
+                      <!-- Mostrar el contenido de otras columnas -->
+                      <ng-container *ngIf="column !== 'Tipo_Pedido'">
+                        <span class="table-text">{{ element[column] }}</span>
+                      </ng-container>
+                    </ng-container>
+                  </ng-container>
+                </td>
+              </ng-container>
+            </ng-container>
+          </ng-container>
+
+          <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+          <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+        </table>
+      </div>
+
+      <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons aria-label="Seleccionar página de elementos periódicos">
+      </mat-paginator>
+      
+    </div>
+  </div>
+
+  <!-- Menú de descarga -->
+  <button mat-fab color="primary" class="floating-button" [matMenuTriggerFor]="menu">
+    <mat-icon>cloud_download</mat-icon>
+  </button>
+  <mat-menu #menu="matMenu">
+    <button mat-menu-item (click)="descargarTemplatePedidos()">
+      <mat-icon>file_download</mat-icon>
+      <span class="ml-2">Descargar Template Pedidos</span>
+    </button>
+  </mat-menu>
+
+  <!-- Overlays -->
+  <div class="overlay" *ngIf="cargarOrdenesVenta">
+    <div class="spinner-container">
+      <div class="bouncing-loader">
+        <div class="bouncing-ball"></div>
+        <div class="bouncing-ball"></div>
+        <div class="bouncing-ball"></div>
+      </div>
+      <div class="text">Cargando...</div>
+    </div>
+  </div>
+  <div class="overlay" *ngIf="enviadopedidosSAP">
+    <div class="spinner-container">
+      <div class="bouncing-loader">
+        <div class="bouncing-ball"></div>
+        <div class="bouncing-ball"></div>
+        <div class="bouncing-ball"></div>
+      </div>
+      <div class="text">Cargando...</div>
+    </div>
+  </div>
+</div>

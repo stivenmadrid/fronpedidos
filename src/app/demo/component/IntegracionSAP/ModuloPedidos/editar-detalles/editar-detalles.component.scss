@@ -1,0 +1,45 @@
+/* Estilo para el diálogo de edición */
+.mat-dialog-container {
+    padding: 20px;
+    max-width: 800px; 
+    border-radius: 8px; 
+  }
+  
+
+  .form-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px; 
+  }
+  
+
+  mat-form-field {
+    width: 100%; 
+    margin-bottom: 16px; 
+  }
+  
+
+  mat-form-field .mat-form-field-infix {
+    padding: 0;
+  }
+  
+  mat-dialog-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 8px;
+  }
+  
+  .mat-dialog-title {
+    font-size: 1.5rem; 
+    font-weight: 500; 
+  }
+  
+  textarea.mat-input-element {
+    min-height: 100px;
+  }
+  
+  .header {
+    background-color: #5D6D7E;
+    color: white;
+  }
+  

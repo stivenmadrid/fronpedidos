@@ -5,7 +5,8 @@ import { MatDialog } from '@angular/material/dialog';
 import { RegistrarusuariosComponent } from '../usuarios/registrarusuarios/registrarusuarios.component';
 import { RestablecercontrasenaComponent } from './restablecercontrasena/restablecercontrasena.component';
 import { EditarusuariosComponent } from './editarusuarios/editarusuarios.component';
-import { RolesService } from '../../../../Service/Usuarios/roles.service'; 
+import { RolesService } from '../../../../Service/Usuarios/roles.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-usuarios',
@@ -13,21 +14,28 @@ import { RolesService } from '../../../../Service/Usuarios/roles.service';
   styleUrls: ['./usuarios.component.scss']
 })
 export class UsuariosComponent implements OnInit {
-
+  //columnas para visualizar en la tabla de usuarios
   displayedColumns: string[] = ['id', 'name', 'email', 'roles', 'actions'];
+
+  // Damos un sobre nombre a las columnas de los nombres
   columnAliases: { [key: string]: string } = {
-    'id': 'ID',
-    'name': 'Nombre',
-    'email': 'Correo Electrónico',
-    'roles': 'Roles',
-    'actions': 'Acciones'
+    id: 'ID',
+    name: 'Usuario',
+    email: 'Correo Electrónico',
+    roles: 'Role',
+    actions: 'Acciones'
   };
+
   dataSource = new MatTableDataSource<any>();
+
   usuarios: any[] = [];
-  roles: any[] = []; // Define la propiedad roles
-
-  constructor(private usuariosService: UsuariosService, private dialog: MatDialog, private rolesService: RolesService) { }
-
+  roles: any[] = [];
+  updatingUser: boolean = false;
+  constructor(
+    private usuariosService: UsuariosService,
+    private dialog: MatDialog,
+    private rolesService: RolesService
+  ) {}
 
   ngOnInit(): void {
     this.obtenerUsuarios();
@@ -38,14 +46,18 @@ export class UsuariosComponent implements OnInit {
     });
   }
 
+  
   obtenerUsuarios() {
+    this.updatingUser = true;
     this.usuariosService.obtenerUsuarios().subscribe(
       (usuarios: any[]) => {
         this.usuarios = usuarios;
         this.dataSource.data = usuarios;
+        this.updatingUser = false; // Detener el spinner cuando la respuesta sea exitosa
       },
-      error => {
+      (error) => {
         console.error('Error al obtener usuarios:', error);
+        this.updatingUser = false; // Detener el spinner cuando ocurra un error
       }
     );
   }
@@ -55,7 +67,7 @@ export class UsuariosComponent implements OnInit {
       (roles: any[]) => {
         this.roles = roles;
       },
-      error => {
+      (error) => {
         console.error('Error al obtener roles:', error);
       }
     );
@@ -82,22 +94,66 @@ export class UsuariosComponent implements OnInit {
         this.dialog.open(EditarusuariosComponent, {
           data: {
             user: usuario,
-            roles: roles // Pasar los roles al componente de edición
+            roles: roles
           }
         });
       },
-      error => {
+      (error) => {
         console.error('Error al obtener roles:', error);
       }
     );
   }
-  
-  
 
   restablecerContrasena(usuario: any) {
     this.dialog.open(RestablecercontrasenaComponent, {
-      data: { userId: usuario.id },
+      data: { userId: usuario.id }
     });
   }
-  
+
+  inactivarUsuario(usuario: any): void {
+    Swal.fire({
+      title: '¿Estás seguro?',
+      text: '¿Deseas inactivar este usuario?',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Sí, inactivar',
+      cancelButtonText: 'Cancelar'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        this.updatingUser = true; // Muestra el spinner mientras se procesa la solicitud
+        this.usuariosService.inactivarUsuario(usuario.id).subscribe(
+          (response: any) => {
+            this.updatingUser = false;
+            this.obtenerUsuarios(); // Refresca la lista de usuarios
+            Swal.fire({
+              icon: 'success',
+              title: 'Usuario inactivado',
+              text: response.message
+            });
+          },
+          (error: any) => {
+            console.error('Error al inactivar usuario:', error);
+            this.updatingUser = false;
+            let errorMessage = '';
+            if (error.error.errors) {
+              Object.values(error.error.errors).forEach((errorMessages: string[]) => {
+                errorMessages.forEach((message: string) => {
+                  errorMessage += `${message}\n`;
+                });
+              });
+            } else {
+              errorMessage = error.error.message || 'Error desconocido';
+            }
+            Swal.fire({
+              icon: 'error',
+              title: 'Error al inactivar usuario',
+              text: errorMessage
+            });
+          }
+        );
+      }
+    });
+  }
 }

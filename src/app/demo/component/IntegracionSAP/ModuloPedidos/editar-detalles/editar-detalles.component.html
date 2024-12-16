@@ -1,0 +1,52 @@
+<h1 mat-dialog-title class="header">Editar Detalle</h1>
+<div mat-dialog-content>
+  <form>
+    <div class="form-grid">
+      <mat-form-field appearance="fill">
+        <mat-label>ID Detalle Pedido</mat-label>
+        <input matInput [(ngModel)]="data.id_detalle_pedido" name="id_detalle_pedido" required disabled />
+      </mat-form-field>
+
+      <mat-form-field appearance="fill">
+        <mat-label>Almacén</mat-label>
+        <input matInput [(ngModel)]="data.Almacen" name="Almacen" required />
+      </mat-form-field>
+
+      <mat-form-field appearance="fill">
+        <mat-label>Lista P</mat-label>
+        <input matInput type="number" [(ngModel)]="data.ListaP" name="ListaP" required min="1" step="1" />
+      </mat-form-field>
+      <mat-form-field appearance="fill">
+        <mat-label>Codigo producto</mat-label>
+        <input matInput [(ngModel)]="data.CodArticulo" name="CodArticulo" required />
+      </mat-form-field>
+      <mat-form-field appearance="fill">
+        <mat-label>Producto</mat-label>
+        <input matInput [(ngModel)]="data.Producto" name="Producto" required />
+      </mat-form-field>
+
+      <mat-form-field appearance="fill">
+        <mat-label>Cantidad</mat-label>
+        <input matInput type="number" [(ngModel)]="data.Cantidad" name="Cantidad" required min="1" step="1" />
+      </mat-form-field>
+
+      <mat-form-field appearance="fill">
+        <mat-label>Precio Total</mat-label>
+        <input matInput type="number" [(ngModel)]="data.PrecioTotal" name="PrecioTotal" required min="0.01" step="0.01" />
+      </mat-form-field>
+
+      <mat-form-field appearance="fill">
+        <mat-label>Observación</mat-label>
+        <textarea matInput [(ngModel)]="data.Observacion" name="Observacion"></textarea>
+      </mat-form-field>
+    </div>
+  </form>
+</div>
+<mat-dialog-actions>
+  <button mat-mini-fab color="warn" (click)="cancel()" matTooltip="Cancelar">
+    <mat-icon>close</mat-icon>
+  </button>
+  <button mat-mini-fab color="primary" (click)="save()" matTooltip="Guardar">
+    <mat-icon>save</mat-icon>
+  </button>
+</mat-dialog-actions>

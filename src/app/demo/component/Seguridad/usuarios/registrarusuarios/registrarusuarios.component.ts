@@ -10,7 +10,7 @@ import Swal from 'sweetalert2';
   styleUrls: ['./registrarusuarios.component.scss']
 })
 export class RegistrarusuariosComponent implements OnInit {
-  user: any = {};
+  user: any = { Notificaciones: false }; // Initialize with a boolean
   registrousuario: boolean = false; // Variable para controlar el estado del spinner
   roles: any[] = []; // Arreglo para almacenar los roles
 

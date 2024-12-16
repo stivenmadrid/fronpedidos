@@ -1,0 +1,68 @@
+<div class="table-responsive mt-3">
+  <div class="card">
+    <div class="card-body">
+      <h2>Log de Modificaciones de Pedidos</h2>
+
+      <!-- Campo de búsqueda -->
+      <mat-form-field appearance="fill" class="w-100">
+        <mat-label>Buscar por Pedido ID</mat-label>
+        <input matInput (keyup)="applyFilter($any($event.target).value)" placeholder="Ingrese Pedido ID">
+
+      </mat-form-field>
+
+      <!-- Tabla del Log de Modificaciones -->
+      <div class="table-responsive mt-3">
+        <mat-accordion>
+          <mat-expansion-panel *ngFor="let modification of filteredModificaciones" hideToggle>
+            <mat-expansion-panel-header>
+              <mat-panel-title>
+                Pedido ID: {{ modification.pedido_id }}
+              </mat-panel-title>
+              <mat-panel-description> 
+                <span>Mostrar detalles</span>
+              </mat-panel-description>
+            </mat-expansion-panel-header>
+            <table mat-table [dataSource]="modification.details" class="mat-elevation-z8 custom-table">
+  
+              <!-- Campo Modificado -->
+              <ng-container matColumnDef="campo_modificado">
+                <th mat-header-cell *matHeaderCellDef> Campo Modificado </th>
+                <td mat-cell *matCellDef="let detail"> {{detail.campo_modificado}} </td>
+              </ng-container>
+  
+              <!-- Valor Anterior -->
+              <ng-container matColumnDef="valor_anterior">
+                <th mat-header-cell *matHeaderCellDef> Valor Anterior </th>
+                <td mat-cell *matCellDef="let detail"> {{detail.valor_anterior}} </td>
+              </ng-container>
+  
+              <!-- Valor Nuevo -->
+              <ng-container matColumnDef="valor_nuevo">
+                <th mat-header-cell *matHeaderCellDef> Valor Nuevo </th>
+                <td mat-cell *matCellDef="let detail"> {{detail.valor_nuevo}} </td>
+              </ng-container>
+  
+              <!-- Usuario Nombre -->
+              <ng-container matColumnDef="usuario_nombre">
+                <th mat-header-cell *matHeaderCellDef> Usuario Nombre </th>
+                <td mat-cell *matCellDef="let detail"> {{detail.usuario_nombre}} </td>
+              </ng-container>
+  
+              <!-- Fecha -->
+              <ng-container matColumnDef="created_at">
+                <th mat-header-cell *matHeaderCellDef> Fecha </th>
+                <td mat-cell *matCellDef="let detail"> {{detail.created_at | date:'dd/MM/yyyy HH:mm:ss'}} </td>
+              </ng-container>
+  
+              <!-- Header Row -->
+              <tr mat-header-row *matHeaderRowDef="detailColumns"></tr>
+              <!-- Data Row -->
+              <tr mat-row *matRowDef="let row; columns: detailColumns;"></tr>
+            </table>
+          </mat-expansion-panel>
+        </mat-accordion>
+      </div>
+
+    </div>
+  </div>
+</div>

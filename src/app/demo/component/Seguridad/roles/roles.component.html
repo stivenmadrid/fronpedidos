@@ -1,43 +1,44 @@
-
 <div class="button-container" style="display: flex; justify-content: flex-start">
-    <button mat-fab color="primary" (click)="openRegistrarRolesModal()">
-      <mat-icon aria-hidden="false">person_add</mat-icon>
-    </button>
-    <span style="margin-left: 10px">Registrar roles</span>
-  </div>
-  
+  <button mat-fab color="primary" (click)="openRegistrarRolesModal()">
+    <mat-icon aria-hidden="false">person_add</mat-icon>
+  </button>
+  <span style="margin-left: 10px">Registrar roles</span>
+</div>
 
 <div class="container">
-    <mat-table [dataSource]="dataSource">
-      <!-- Definir columnas -->
-      <ng-container *ngFor="let column of displayedColumns" [matColumnDef]="column">
-        <mat-header-cell *matHeaderCellDef>{{ columnAliases[column] }}</mat-header-cell>
-        <mat-cell *matCellDef="let role">
-          <!-- Mostrar el contenido de la celda -->
-          <ng-container *ngIf="column !== 'actions'">
-            {{ role[column] }}
-          </ng-container>
-          <!-- Agregar botones de editar y eliminar -->
-          <ng-container *ngIf="column === 'actions'">
-            <button mat-icon-button color="primary" (click)="openEditarRolesModal(role.id)">
-              <mat-icon>edit</mat-icon>
-            </button>
-            <button mat-icon-button color="warn" (click)="eliminarRol(role.id)">
-              <mat-icon>delete</mat-icon>
-            </button>
-          </ng-container>
-        </mat-cell>
-      </ng-container>
-  
-      <!-- Definir fila de encabezado -->
-      <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
-      <!-- Definir fila de datos -->
-      <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
-    </mat-table>
-  </div>
-  <div class="overlay" *ngIf="eliminando">
-    <div class="spinner-container">
-      <div class="spinner"></div>
-      <div class="text">Eliminando...</div>
+  <mat-table [dataSource]="dataSource">
+    <ng-container *ngFor="let column of displayedColumns" [matColumnDef]="column">
+      <mat-header-cell *matHeaderCellDef>{{ columnAliases[column] }}</mat-header-cell>
+      <mat-cell *matCellDef="let role">
+        <ng-container *ngIf="column !== 'actions'">
+          {{ role[column] }}
+        </ng-container>
+
+        <ng-container *ngIf="column === 'actions'">
+          <button mat-icon-button color="primary" (click)="openEditarRolesModal(role.id)">
+            <mat-icon>edit</mat-icon>
+          </button>
+          <button mat-icon-button color="warn" (click)="eliminarRol(role.id)">
+            <mat-icon>delete</mat-icon>
+          </button>
+        </ng-container>
+      </mat-cell>
+    </ng-container>
+
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+
+    <mat-row *matRowDef="let row; columns: displayedColumns"></mat-row>
+  </mat-table>
+</div>
+
+
+<div class="overlay" *ngIf="eliminando">
+  <div class="spinner-container">
+    <div class="bouncing-loader">
+      <div class="bouncing-ball"></div>
+      <div class="bouncing-ball"></div>
+      <div class="bouncing-ball"></div>
     </div>
+    <div class="text">Cargando...</div>
   </div>
+</div>

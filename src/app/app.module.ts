@@ -19,7 +19,6 @@ import { NavGroupComponent } from './theme/layouts/admin/navigation/nav-content/
 import { NavItemComponent } from './theme/layouts/admin/navigation/nav-content/nav-item/nav-item.component';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 
-
 import { CommonModule, DatePipe } from '@angular/common'; 
 //importaciones de aplicaciones
 import { LoginComponent } from './demo/authentication/login/login.component';
@@ -34,8 +33,17 @@ import { RestablecercontrasenaComponent } from './demo/component/Seguridad/usuar
 import { EditarusuariosComponent } from './demo/component/Seguridad/usuarios/editarusuarios/editarusuarios.component';
 import { EditarrolesComponent } from './demo/component/Seguridad/roles/editarroles/editarroles.component';
 import { EditarpermisosComponent } from './demo/component/Seguridad/permisos/editarpermisos/editarpermisos.component';
-import { PedidosComponent } from './demo/component/Meseros/pedidos/pedidos.component';
-import { RegistrarPedidosComponent } from './demo/component/Meseros/registrar-pedidos/registrar-pedidos.component';
+import { PedidosComponent } from './demo/component/IntegracionSAP/ModuloPedidos/pedidos/pedidos.component';
+import { ListaPedidosPendientesSAPComponent } from './demo/component/IntegracionSAP/ModuloPedidos/lista-pedidos-pendientes-sap/lista-pedidos-pendientes-sap.component';
+import { ImportarPedidosComponent } from './demo/component/IntegracionSAP/ModuloPedidos/importar-pedidos/importar-pedidos.component';
+import { DetallePedidosComponent } from './demo/component/IntegracionSAP/ModuloPedidos/detalle-pedidos/detalle-pedidos.component';
+import { EditarDetallesComponent } from './demo/component/IntegracionSAP/ModuloPedidos/editar-detalles/editar-detalles.component';
+import { PedidosEnviadosSAPComponent } from './demo/component/IntegracionSAP/ModuloPedidos/pedidos-enviados-sap/pedidos-enviados-sap.component';
+import { PedidosManualesComponent } from './demo/component/IntegracionSAP/ModuloPedidos/pedidos-manuales/pedidos-manuales.component';
+import { LogModificacionesPedidosComponent } from './demo/component/IntegracionSAP/ModuloPedidos/log-modificaciones-pedidos/log-modificaciones-pedidos.component';
+import { MatExpansionModule } from '@angular/material/expansion'; 
+import { InterfazLineaCeroComponent } from './demo/component/LineaCero/interfaz-linea-cero/interfaz-linea-cero.component';
+
 
 //importaciones de angular material
 import { MatButtonModule } from '@angular/material/button';
@@ -49,7 +57,10 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatCardModule } from '@angular/material/card';
-
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatNativeDateModule } from '@angular/material/core';
+import { MatMenuModule } from '@angular/material/menu';
+import { FormsModule } from '@angular/forms';
 @NgModule({
   declarations: [
     AppComponent,
@@ -76,8 +87,15 @@ import { MatCardModule } from '@angular/material/card';
     EditarrolesComponent,
     EditarpermisosComponent,
     PedidosComponent,
-    RegistrarPedidosComponent
-    
+    ListaPedidosPendientesSAPComponent,
+    ImportarPedidosComponent,
+    DetallePedidosComponent,
+    InterfazLineaCeroComponent,
+    EditarDetallesComponent,
+    PedidosEnviadosSAPComponent,
+    PedidosManualesComponent,
+    LogModificacionesPedidosComponent
+   
   ],
   imports: [
     BrowserModule,
@@ -96,7 +114,13 @@ import { MatCardModule } from '@angular/material/card';
     MatSelectModule,
     MatPaginatorModule,
     MatCheckboxModule,
-    MatCardModule
+    MatCardModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
+    MatMenuModule,
+    MatExpansionModule,
+    FormsModule
+    
     
   ],
   bootstrap: [AppComponent],

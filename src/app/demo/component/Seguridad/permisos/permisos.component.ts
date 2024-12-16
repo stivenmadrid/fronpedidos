@@ -11,7 +11,7 @@
     styleUrls: ['./permisos.component.scss']
   })
   export class PermisosComponent implements OnInit {
-    displayedColumns: string[] = ['id', 'name', 'guard_name', 'created_at', 'updated_at', 'actions'];
+    displayedColumns: string[] = ['id', 'name', 'guard_name', 'created_at', 'updated_at', ];
 
 
 
@@ -22,12 +22,12 @@
       'guard_name': 'Guardia',
       'created_at': 'Fecha de Creación',
       'updated_at': 'Fecha de Actualización',
-      'actions' : 'actions'
+      // 'actions' : 'actions'
     };
   
     dataSource = new MatTableDataSource<any>();
     permisos: any[] = [];
-  
+    cargarpermisos: boolean = false;
     constructor(
       private permisosService: PermissionsService,
       private dialog: MatDialog
@@ -38,13 +38,16 @@
     }
   
     obtenerpermisos() {
+      this.cargarpermisos = true;
       this.permisosService.obtenerPermisos().subscribe(
         (permisos: any[]) => {
           this.permisos = permisos;
           this.dataSource.data = permisos;
+          this.cargarpermisos = false;
         },
         error => {
           console.error('Error al obtener los permisos:', error);
+          this.cargarpermisos = false;
         }
       );
     }

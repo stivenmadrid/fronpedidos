@@ -1,0 +1,85 @@
+<!-- Loading overlay, visible when loadingLineaCero is true -->
+<div class="overlay" *ngIf="loadingLineaCero">
+    <div class="spinner-container">
+      <div class="bouncing-loader">
+        <div class="bouncing-ball"></div>
+        <div class="bouncing-ball"></div>
+        <div class="bouncing-ball"></div>
+      </div>
+      <div class="text">Línea Cero...</div>
+    </div>
+  </div>
+  
+  <!-- Table container -->
+  <div class="table-responsive mt-3">
+    <div class="card">
+      <div class="card-body">
+        <!-- Search input -->
+        <div class="button-container d-flex align-items-center justify-content-between">
+          <div class="search-container">
+            <mat-form-field class="example-full-width">
+              <mat-label>Buscar...</mat-label>
+              <input matInput [(ngModel)]="searchTerm" (input)="search()" placeholder="Buscar..." />
+            </mat-form-field>
+          </div>
+        </div>
+  
+        <!-- Table -->
+        <div class="table-responsive mt-3">
+          <table mat-table [dataSource]="dataSource" class="mat-elevation-z2 custom-table">
+            <!-- ID Column -->
+            <ng-container matColumnDef="id">
+              <th mat-header-cell *matHeaderCellDef> ID </th>
+              <td mat-cell *matCellDef="let element"> {{ element.id }} </td>
+            </ng-container>
+  
+            <!-- Datetime Column -->
+            <ng-container matColumnDef="datetime">
+              <th mat-header-cell *matHeaderCellDef> Fecha/Hora </th>
+              <td mat-cell *matCellDef="let element"> {{ element.datetime }} </td>
+            </ng-container>
+  
+            <!-- Additional Modbus Variable Columns -->
+            <ng-container matColumnDef="modbus_var1">
+              <th mat-header-cell *matHeaderCellDef> Var1 </th>
+              <td mat-cell *matCellDef="let element"> {{ element.modbus_var1 }} </td>
+            </ng-container>
+  
+            <ng-container matColumnDef="modbus_var2">
+              <th mat-header-cell *matHeaderCellDef> Var2 </th>
+              <td mat-cell *matCellDef="let element"> {{ element.modbus_var2 }} </td>
+            </ng-container>
+  
+            <ng-container matColumnDef="modbus_var3">
+              <th mat-header-cell *matHeaderCellDef> Var3 </th>
+              <td mat-cell *matCellDef="let element"> {{ element.modbus_var3 }} </td>
+            </ng-container>
+  
+            <ng-container matColumnDef="modbus_var4">
+              <th mat-header-cell *matHeaderCellDef> Var4 </th>
+              <td mat-cell *matCellDef="let element"> {{ element.modbus_var4 }} </td>
+            </ng-container>
+  
+            <ng-container matColumnDef="modbus_var5">
+              <th mat-header-cell *matHeaderCellDef> Var5 </th>
+              <td mat-cell *matCellDef="let element"> {{ element.modbus_var5 }} </td>
+            </ng-container>
+  
+            <ng-container matColumnDef="modbus_var6">
+              <th mat-header-cell *matHeaderCellDef> Var6 </th>
+              <td mat-cell *matCellDef="let element"> {{ element.modbus_var6 }} </td>
+            </ng-container>
+  
+            <!-- Header Row and Data Row -->
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+          </table>
+        </div>
+  
+        <!-- Paginator -->
+        <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons aria-label="Seleccionar página de elementos periódicos">
+        </mat-paginator>
+      </div>
+    </div>
+  </div>
+  

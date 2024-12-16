@@ -13,30 +13,42 @@ export class AuthService {
   private userRoles: string[] = [];
   private userPermissions: string[] = [];
 
-  constructor(private http: HttpClient, private router: Router) {
+  constructor(
+    private http: HttpClient,
+    private router: Router
+  ) {
     this.loadUserFromLocalStorage();
   }
 
-  login(credentials: { email: string; password: string }): Observable<any> {
-    return this.http.post(`${this.apiUrl}/login`, credentials)
-      .pipe(
-        tap((response: any) => {
-          const { token, name, roles, permissions } = response;
-          localStorage.setItem('token', token);
-          localStorage.setItem('name', name);
-          localStorage.setItem('roles', JSON.stringify(roles));
-          localStorage.setItem('permissions', JSON.stringify(permissions));
-          this.userRoles = roles;
-          this.userPermissions = permissions;
-          console.log('Autenticación exitosa:', response);
-          this.router.navigate(['/dashboard/default']);
-        }),
-        catchError(error => {
-          console.error('Error en la autenticación:', error);
-          throw error;
-        })
-      );
+
+  getUserId(): string | null {
+    return localStorage.getItem('userId');
   }
+
+
+  login(credentials: { email: string; password: string }): Observable<any> {
+    return this.http.post(`${this.apiUrl}/login`, credentials).pipe(
+      tap((response: any) => {
+        const { token, id, name, roles, permissions } = response;
+        localStorage.setItem('token', token);
+        localStorage.setItem('userId', id); // Almacena el ID del usuario aquí
+        localStorage.setItem('name', name);
+        localStorage.setItem('roles', JSON.stringify(roles));
+        localStorage.setItem('permissions', JSON.stringify(permissions));
+        this.userRoles = roles;
+        this.userPermissions = permissions;
+        console.log('Autenticación exitosa:', response);
+        this.router.navigate(['/dashboard/default']);
+      }),
+      catchError((error) => {
+        console.error('Error en la autenticación:', error);
+        throw error;
+      })
+    );
+  }
+
+  
+  
 
   logout(): Observable<any> {
     const token = localStorage.getItem('token');
@@ -50,7 +62,7 @@ export class AuthService {
         console.log('Sesión cerrada exitosamente');
         this.router.navigate(['/login']);
       }),
-      catchError(error => {
+      catchError((error) => {
         console.error('Error al cerrar sesión:', error);
         throw error;
       })

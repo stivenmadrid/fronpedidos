@@ -1,0 +1,239 @@
+<div class="order-details-container">
+  <table mat-table [dataSource]="[data.ordenVenta]" class="mat-elevation-z8 order-table">
+    <ng-container matColumnDef="campo">
+      <th mat-header-cell *matHeaderCellDef>Encabezados pedidos</th>
+      <td mat-cell *matCellDef="let element" class="order-details">
+        <div class="grid-container">
+          <div class="grid-item">
+            <mat-form-field appearance="fill">
+              <mat-label>ID Pedido/Caja:</mat-label>
+              <input
+                matInput
+                [(ngModel)]="element.Id_pedido_Caja"
+                (ngModelChange)="updateField('Id_pedido_Caja', element.Id_pedido_Caja)"
+                disabled=""
+              />
+            </mat-form-field>
+          </div>
+          <div class="grid-item">
+            <mat-form-field appearance="fill">
+              <mat-label>Fecha Creación Automatica:</mat-label>
+              <input
+                matInput
+                [(ngModel)]="element.created_at"
+                (ngModelChange)="updateField('created_at', element.created_at)"
+                disabled=""
+              />
+            </mat-form-field>
+          </div>
+          <div class="grid-item">
+            <mat-form-field appearance="fill">
+              <mat-label>Fecha de facturación:</mat-label>
+              <input matInput [(ngModel)]="element.Fecha_Factura" (ngModelChange)="updateField('Fecha_Factura', element.Fecha_Factura)" />
+            </mat-form-field>
+          </div>
+          <div class="grid-item">
+            <mat-form-field appearance="fill">
+              <mat-label>Fecha de despacho:</mat-label>
+              <input
+                matInput
+                [(ngModel)]="element.Fecha_Despacho"
+                (ngModelChange)="updateField('Fecha_Despacho', element.Fecha_Despacho)"
+              />
+            </mat-form-field>
+          </div>
+          <div class="grid-item">
+            <mat-form-field appearance="fill">
+              <mat-label>Fecha Pedido:</mat-label>
+              <input matInput [(ngModel)]="element.Fecha_Pedido" (ngModelChange)="updateField('Fecha_Pedido', element.Fecha_Pedido)" />
+            </mat-form-field>
+          </div>
+          <div class="grid-item">
+            <mat-form-field appearance="fill">
+              <mat-label>Número Pedido:</mat-label>
+              <input matInput [(ngModel)]="element.Numero_Pedido" (ngModelChange)="updateField('Numero_Pedido', element.Numero_Pedido)" />
+            </mat-form-field>
+          </div>
+        
+          <div class="grid-item">
+            <mat-form-field appearance="fill">
+              <mat-label>Precio Total:</mat-label>
+              <input matInput [(ngModel)]="element.PrecioTotal" (ngModelChange)="updateField('PrecioTotal', element.PrecioTotal)" />
+            </mat-form-field>
+          </div>
+       
+          <div class="grid-item">
+            <mat-form-field appearance="fill" class="large-textarea">
+              <mat-label>Comentario Inicial:</mat-label>
+              <textarea
+                matInput
+                [(ngModel)]="element.Comentario_Inicial"
+                (ngModelChange)="updateField('Comentario_Inicial', element.Comentario_Inicial)"
+              ></textarea>
+            </mat-form-field>
+          </div>
+          <div class="grid-item">
+            <mat-form-field appearance="fill" class="large-textarea">
+              <mat-label>Comentario Final:</mat-label>
+              <textarea
+                matInput
+                [(ngModel)]="element.Comentario_Final"
+                (ngModelChange)="updateField('Comentario_Final', element.Comentario_Final)"
+              ></textarea>
+            </mat-form-field>
+          </div>
+
+          <div class="grid-item">
+            <mat-form-field appearance="fill">
+              <mat-label>Tipo Pedido:</mat-label>
+              <input
+                matInput
+                [(ngModel)]="element.Tipo_Pedido"
+                (ngModelChange)="updateField('Tipo_Pedido', element.Tipo_Pedido)"
+                disabled=""
+              />
+            </mat-form-field>
+          </div>
+          <div class="grid-item">
+            <mat-form-field appearance="fill">
+              <mat-label>Fecha Estimada Entrega Prod:</mat-label>
+              <input
+                matInput
+                [(ngModel)]="element.U_FecEstimadaEntProduccion"
+                (ngModelChange)="updateField('U_FecEstimadaEntProduccion', element.U_FecEstimadaEntProduccion)"
+                
+              />
+            </mat-form-field>
+          </div>
+
+          
+        </div>
+      </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="['campo']"></tr>
+    <tr mat-row *matRowDef="let row; columns: ['campo']"></tr>
+  </table>
+
+  <table mat-table [dataSource]="data.detalles" class="mat-elevation-z8 details-table">
+    <ng-container matColumnDef="id_detalle_pedido">
+      <th mat-header-cell *matHeaderCellDef>ID Detalle Pedido</th>
+      <td mat-cell *matCellDef="let detail">
+        <mat-form-field appearance="fill">
+          <mat-label>ID Detalle Pedido:</mat-label>
+          <input matInput [(ngModel)]="detail.id_detalle_pedido" (ngModelChange)="updateDetailField('id_detalle_pedido', detail)"  disabled=""/>
+        </mat-form-field>
+      </td>
+    </ng-container>
+    <ng-container matColumnDef="CodArticulo">
+      <th mat-header-cell *matHeaderCellDef>Codigo Articulo</th>
+      <td mat-cell *matCellDef="let detail">
+        <mat-form-field appearance="fill">
+          <mat-label>CodArticulo:</mat-label>
+          <input matInput [(ngModel)]="detail.CodArticulo" (ngModelChange)="updateDetailField('CodArticulo', detail)" />
+        </mat-form-field>
+      </td>
+    </ng-container>
+    <ng-container matColumnDef="Descripcion Articulo">
+      <th mat-header-cell *matHeaderCellDef>Descripcion Articulo</th>
+      <td mat-cell *matCellDef="let detail">
+        <mat-form-field appearance="fill">
+          <mat-label>Descripcion Articulo:</mat-label>
+          <input matInput [(ngModel)]="detail.NombreArticulo" (ngModelChange)="updateDetailField('NombreArticulo', detail)" />
+        </mat-form-field>
+      </td>
+    </ng-container>
+    <ng-container matColumnDef="Cantidad">
+      <th mat-header-cell *matHeaderCellDef>Cantidad</th>
+      <td mat-cell *matCellDef="let detail">
+        <mat-form-field appearance="fill">
+          <mat-label>Cantidad:</mat-label>
+          <input matInput [(ngModel)]="detail.Cantidad" (ngModelChange)="updateDetailField('Cantidad', detail)" />
+        </mat-form-field>
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="Almacen">
+      <th mat-header-cell *matHeaderCellDef>Almacén</th>
+      <td mat-cell *matCellDef="let detail">
+        <mat-form-field appearance="fill">
+          <mat-label>Almacén:</mat-label>
+          <input matInput [(ngModel)]="detail.Almacen" (ngModelChange)="updateDetailField('Almacen', detail)" />
+        </mat-form-field>
+      </td>
+    </ng-container>
+    <ng-container matColumnDef="PrecioTotal">
+      <th mat-header-cell *matHeaderCellDef>Precio Total</th>
+      <td mat-cell *matCellDef="let detail">
+        <mat-form-field appearance="fill">
+          <mat-label>Precio Total:</mat-label>
+          <input matInput [(ngModel)]="detail.PrecioTotal" (ngModelChange)="updateDetailField('PrecioTotal', detail)" />
+        </mat-form-field>
+      </td>
+    </ng-container>
+    <ng-container matColumnDef="ListaP">
+      <th mat-header-cell *matHeaderCellDef>Lista P</th>
+      <td mat-cell *matCellDef="let detail">
+        <mat-form-field appearance="fill">
+          <mat-label>Lista P:</mat-label>
+          <input matInput [(ngModel)]="detail.ListaP" (ngModelChange)="updateDetailField('ListaP', detail)" />
+        </mat-form-field>
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="Observacion">
+      <th mat-header-cell *matHeaderCellDef>Observación</th>
+      <td mat-cell *matCellDef="let detail">
+        <mat-form-field appearance="fill">
+          <mat-label>Observación:</mat-label>
+          <input matInput [(ngModel)]="detail.Observacion" (ngModelChange)="updateDetailField('Observacion', detail)" />
+        </mat-form-field>
+      </td>
+    </ng-container>
+    <ng-container matColumnDef="Cajas">
+      <th mat-header-cell *matHeaderCellDef>Palets</th>
+      <td mat-cell *matCellDef="let detail">
+        <mat-form-field appearance="fill">
+          <mat-label>Palets:</mat-label>
+          <input matInput [(ngModel)]="detail.Cajas" (ngModelChange)="updateDetailField('Cajas', detail)" />
+        </mat-form-field>
+      </td>
+    </ng-container>
+    
+    <ng-container matColumnDef="Paquetes">
+      <th mat-header-cell *matHeaderCellDef>Paquetes</th>
+      <td mat-cell *matCellDef="let detail">
+        <mat-form-field appearance="fill">
+          <mat-label>Paquetes:</mat-label>
+          <input matInput [(ngModel)]="detail.Paquetes" (ngModelChange)="updateDetailField('Paquetes', detail)" />
+        </mat-form-field>
+      </td>
+    </ng-container>
+    
+    
+    <tr mat-header-row *matHeaderRowDef="['id_detalle_pedido', 'CodArticulo', 'Descripcion Articulo', 'Cantidad', 'Almacen', 'PrecioTotal','Cajas','Paquetes']"></tr>
+<tr mat-row *matRowDef="let row; columns: ['id_detalle_pedido', 'CodArticulo', 'Descripcion Articulo', 'Cantidad', 'Almacen', 'PrecioTotal','Cajas','Paquetes']"></tr>
+  </table>
+
+  <button
+    mat-raised-button
+    color="primary"
+    (click)="updateOrder()"
+    [disabled]="!isUpdateButtonEnabled"
+    [class.active]="isUpdateButtonEnabled"
+    class="floating-button"
+  >
+    Editar Pedido
+  </button>
+</div>
+
+<div class="overlay" *ngIf="cargarOrdenesVenta">
+  <div class="spinner-container">
+    <div class="bouncing-loader">
+      <div class="bouncing-ball"></div>
+      <div class="bouncing-ball"></div>
+      <div class="bouncing-ball"></div>
+    </div>
+    <div class="text">Actualizando...</div>
+  </div>
+</div>

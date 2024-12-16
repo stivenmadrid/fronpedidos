@@ -1,4 +1,4 @@
-<h2 mat-dialog-title>Editar Rol</h2>
+<h2 mat-dialog-title class="header">Editar Rol</h2>
 
 <mat-dialog-content>
   <div class="form-row">
@@ -6,7 +6,6 @@
       <input matInput placeholder="Nombre del Rol" [(ngModel)]="role.name">
     </mat-form-field>
 
-    <!-- No permitas la edición del campo guard_name -->
     <mat-form-field>
       <input matInput placeholder="Guardia" [(ngModel)]="role.guard_name" disabled>
     </mat-form-field>
@@ -26,8 +25,7 @@
 
 <mat-dialog-actions>
   <button mat-button class="cancel-button" (click)="onCancel()">Cancelar</button>
-  <!-- Cambia el texto del botón para indicar que se está editando -->
-  <button mat-raised-button color="primary" class="register-button" (click)="updateRole()">Actualizar</button>
+  <button mat-raised-button color="primary" (click)="updateRole()">Actualizar</button>
 </mat-dialog-actions>
 <div class="overlay" *ngIf="registrorol">
     <div class="spinner-container">

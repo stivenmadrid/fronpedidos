@@ -1,0 +1,293 @@
+.custom-dialog-container {
+  position: absolute;
+  z-index: 1000 !important;
+  padding: 20px;
+  margin: 20px;
+}
+
+.custom-card {
+  background-color: #f8f9fa;  
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(122, 7, 7, 0.1);
+}
+
+
+.custom-table {
+  width: 100%;
+  border-spacing: 0;
+  border-collapse: collapse;
+}
+
+.custom-table th.mat-header-cell {
+  font-size: 14px;
+  font-weight: bold;
+  background-color: #3f81c2;
+  color: #fff;
+  padding: 8px;
+  text-align: left;
+}
+
+.custom-table td.mat-cell {
+  font-size: 14px;
+  padding: 8px;
+  border-bottom: 1px solid #292929;
+}
+
+.custom-header-row {
+  background-color: #f7ffff3b;
+}
+
+.custom-row:hover {
+  background-color: #c3c0c0a3;  
+}
+
+.table-text {
+  display: block;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+.mat-paginator {
+  margin-top: 16px;
+}
+
+.card-body {
+  padding: 20px;
+}
+
+.table-responsive {
+  overflow-x: auto;
+  margin-top: 16px;
+}
+
+.button-container {
+  margin-bottom: 16px;
+}
+
+.d-flex {
+  display: flex;
+}
+
+.align-items-center {
+  align-items: center;
+}
+
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.7);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+  opacity: 1;
+  transition: opacity 0.3s ease;
+}
+
+.spinner-container {
+  text-align: center;
+}
+
+.bouncing-loader {
+  display: flex;
+  justify-content: space-between;
+  width: 80px;
+}
+
+.bouncing-ball {
+  width: 20px;
+  height: 20px;
+  background-color: #fff;
+  border-radius: 50%;
+  animation: bounce 1.5s infinite ease-in-out, pulse 1.5s infinite ease-in-out;
+  box-shadow: 0 0 10px rgba(224, 199, 39, 0.7);
+}
+
+.bouncing-ball:nth-child(2) {
+  animation-delay: 0.3s;
+}
+
+.bouncing-ball:nth-child(3) {
+  animation-delay: 0.6s;
+}
+
+.text {
+  margin-top: 15px;
+  color: #fff;
+  font-size: 18px;
+  font-weight: bold;
+}
+
+@keyframes bounce {
+  0%, 20%, 50%, 80%, 100% {
+    transform: translateY(0);
+  }
+  40% {
+    transform: translateY(-30px);
+  }
+  60% {
+    transform: translateY(-15px);
+  }
+}
+
+@keyframes pulse {
+  0%, 100% {
+    transform: scale(1);
+    box-shadow: 0 0 10px rgba(229, 239, 92, 0.7);
+  }
+  50% {
+    transform: scale(1.2);
+    box-shadow: 0 0 20px rgba(255, 255, 255, 0.9);
+  }
+}
+
+
+
+
+
+.card {
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.card-body {
+  padding: 20px;
+}
+
+.button-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.search-container {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.mat-form-field {
+  width: 300px;
+}
+
+.table-responsive {
+  overflow: auto;
+}
+
+.custom-table {
+  width: 100%;
+}
+
+.table-cell {
+  white-space: nowrap;
+}
+
+.table-actions {
+  display: flex;
+  gap: 8px;
+}
+
+.custom-color {
+  background-color: #ff4081;
+  color: #fff;
+}
+
+.table-text {
+  display: block;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.example-full-width {
+  width: 100%;
+}
+
+.custom-dialog-container .mat-dialog-container {
+  padding: 0;
+}
+
+.mat-paginator {
+  margin-top: 15px;
+}
+.custom-table {
+  font-size: 12px; /* Tamaño de fuente más pequeño para la tabla */
+}
+
+.table-cell {
+  font-size: 12px; /* Tamaño de fuente más pequeño para las celdas */
+}
+
+.table-text {
+  font-size: 12px; /* Tamaño de fuente más pequeño para el texto dentro de las celdas */
+}
+
+.mat-header-cell, .mat-cell {
+  padding: 4px 8px; /* Ajuste el padding para mantener la alineación */
+}
+table.mat-table {
+  font-size: 12px; /* Tamaño de fuente más pequeño para todas las tablas */
+}
+
+.mat-header-cell {
+  font-size: 8px; /* Tamaño de fuente más pequeño para todos los encabezados */
+  padding: 4px 8px; /* Ajuste del padding para todos los encabezados */
+}
+
+.mat-cell {
+  font-size: 12px; /* Tamaño de fuente más pequeño para todas las celdas */
+  padding: 4px 8px; /* Ajuste del padding para todas las celdas */
+}
+/* Cambia el color de fondo y el color del texto de la fila cuando se pasa el cursor sobre ella */
+.mat-row:hover {
+  background-color: #3f0c0c; /* Color de fondo al pasar el cursor */
+  color: #000; /* Color del texto al pasar el cursor */
+}
+
+.mat-row:hover .mat-cell {
+  color: #000; /* Asegúrate de que el texto dentro de las celdas también cambie de color si es necesario */
+}
+.image-button {
+  width: auto; /* Ajusta automáticamente el ancho según el contenido */
+  height: auto; /* Alto automático según el contenido */
+  padding: 0 16px; /* Relleno ajustado para que los botones tengan un buen tamaño */
+  margin-left: 8px; /* Espacio a la izquierda del botón para separarlo del otro botón */
+  display: flex; /* Mostrar como flex para alinear contenido */
+  align-items: center; /* Alinear contenido verticalmente */
+}
+
+.boton-imagen {
+  width: 80px; /* Ajusta el ancho de la imagen */
+  height: auto; /* Alto automático según la proporción de la imagen */
+  margin-right: 8px; /* Espacio a la derecha de la imagen */
+}
+.export-icon {
+  color: #2196F3; /* Color para el ícono de carrito */
+  font-size: 24px; /* Tamaño del ícono */
+}
+
+.web-icon {
+  color: #4CAF50; /* Color para el ícono de web */
+  font-size: 24px; /* Tamaño del ícono */
+}
+.floating-button {
+  position: fixed;
+  bottom: 70px; /* Ajusta el espacio desde el borde inferior */
+  right: 20px; /* Mantén el espacio desde el borde derecho */
+  z-index: 1000; /* Asegura que el botón esté sobre otros elementos */
+  background-color: #1c3e63; /* Color de fondo del botón, puedes personalizarlo */
+  color: white; /* Color del ícono */
+}
+
+.mat-menu-item {
+  display: flex;
+  align-items: center;
+}
+/* lista-pedidos-pendientes-sap.component.scss */
+.selected-row {
+  background-color: #f3ecec; /* Color de fondo para la fila seleccionada */
+}
+

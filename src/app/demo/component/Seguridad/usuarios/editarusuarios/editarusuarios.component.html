@@ -1,12 +1,10 @@
-<h2 mat-dialog-title>Actualizar Usuario</h2>
+<h2 mat-dialog-title class="header">Actualizar Usuario</h2>
 
 <mat-dialog-content>
   <div class="form-row">
-    <!-- Nombre -->
     <mat-form-field class="form-field">
       <input matInput placeholder="Nombre" [(ngModel)]="user.name" />
     </mat-form-field>
-    <!-- Correo electrónico -->
     <mat-form-field class="form-field">
       <input matInput placeholder="Correo electrónico" [(ngModel)]="user.email" />
     </mat-form-field>
@@ -20,11 +18,15 @@
       </mat-select>
     </mat-form-field>
   </div>
+
+  <div class="form-row">
+    <mat-checkbox [(ngModel)]="user.Notificaciones">Notificaciones actualizaciones pedidos</mat-checkbox>
+  </div>
 </mat-dialog-content>
 
 <mat-dialog-actions>
   <button mat-button class="cancel-button" (click)="onCancel()">Cancelar</button>
-  <button mat-raised-button color="primary" class="update-user-button" (click)="updateUser()" [disabled]="updatingUser">
+  <button mat-raised-button color="primary" (click)="updateUser()" [disabled]="updatingUser">
     <span *ngIf="updatingUser; else notUpdatingUser">Actualizando...</span>
     <ng-template #notUpdatingUser>Actualizar</ng-template>
   </button>
@@ -32,7 +34,11 @@
 
 <div class="overlay" *ngIf="updatingUser">
   <div class="spinner-container">
-    <div class="spinner"></div>
-    <div class="text">Actualizando...</div>
+    <div class="bouncing-loader">
+      <div class="bouncing-ball"></div>
+      <div class="bouncing-ball"></div>
+      <div class="bouncing-ball"></div>
+    </div>
+    <div class="text">Cargando...</div>
   </div>
 </div>

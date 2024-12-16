@@ -1,5 +1,4 @@
-<div class="card">
-    <div class="card-header bg-blue-1000">Selección de personal</div>
+
     <div class="card-body">
       <div class="button-container" style="display: flex; justify-content: flex-start">
         <button mat-fab color="primary" (click)="openRegistrarPermisosModal()">
@@ -37,6 +36,14 @@
           <mat-row *matRowDef="let row; columns: displayedColumns"></mat-row>
         </mat-table>
       </div>
+  
+  <div class="overlay" *ngIf="cargarpermisos">
+    <div class="spinner-container">
+      <div class="bouncing-loader">
+        <div class="bouncing-ball"></div>
+        <div class="bouncing-ball"></div>
+        <div class="bouncing-ball"></div>
+      </div>
+      <div class="text">Cargando...</div>
     </div>
   </div>
-  

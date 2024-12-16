@@ -6,12 +6,7 @@
       <form [formGroup]="loginForm" (ngSubmit)="onSubmit()" class="form-container">
         <mat-form-field>
           <mat-label>Nombre de usuario</mat-label>
-          <input
-            matInput
-            formControlName="email"
-            placeholder="Ingrese su nombre de usuario"
-            required
-          />
+          <input matInput formControlName="email" placeholder="Ingrese su nombre de usuario" required />
           <mat-error *ngIf="loginForm.get('email').hasError('required') && loginForm.get('email').touched">
             Nombre de usuario es requerido.
           </mat-error>
@@ -19,28 +14,27 @@
 
         <mat-form-field>
           <mat-label>Contraseña</mat-label>
-          <input
-            matInput
-            type="password"
-            formControlName="password"
-            placeholder="Ingrese su contraseña"
-            required
-          />
+          <input matInput type="password" formControlName="password" placeholder="Ingrese su contraseña" required />
           <mat-error *ngIf="loginForm.get('password').hasError('required') && loginForm.get('password').touched">
             Contraseña es requerida.
           </mat-error>
         </mat-form-field>
 
-        <!-- Spinner -->
+       
+
         <div class="overlay" *ngIf="authenticating">
           <div class="spinner-container">
-            <div class="spinner"></div>
+            <div class="bouncing-loader">
+              <div class="bouncing-ball"></div>
+              <div class="bouncing-ball"></div>
+              <div class="bouncing-ball"></div>
+            </div>
             <div class="text">Cargando...</div>
           </div>
         </div>
-        
+       
         <!-- Botón de inicio de sesión -->
-        <button mat-raised-button color="primary" type="submit" [disabled]="authenticating">
+        <button mat-raised-button [ngStyle]="{ 'background-color': 'red', color: 'white' }" type="submit" [disabled]="authenticating">
           <span *ngIf="!authenticating">Iniciar sesión</span>
         </button>
       </form>
@@ -48,16 +42,14 @@
 
     <div id="derecho">
       <div class="titulo"></div>
-      <div class="logo-empresa" >
-        <img
-          src="https://www.jptecnos.cl/img/comandas/comandas.png"
-          alt="Logo de la empresa"
-        />
+      <div class="logo-empresa">
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS_H89sWKGPczn2WgRsBpfs6ybAYtV425xkvw&s" alt="Logo de la empresa" />
       </div>
       <div *ngIf="errorMessage" class="alert alert-danger">
         {{ errorMessage }}
       </div>
-      
+    
+
       <hr />
     </div>
   </div>

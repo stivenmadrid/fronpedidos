@@ -65,7 +65,7 @@ export default class DashboardComponent implements OnInit {
           show: false
         }
       },
-      colors: ['#13c2c2'],
+      colors: ['#13c2c2', '#ff0000'],
       plotOptions: {
         bar: {
           columnWidth: '45%',
@@ -108,7 +108,7 @@ export default class DashboardComponent implements OnInit {
           show: false
         }
       },
-      colors: ['#faad14'],
+      colors: ['#13c2c2', '#ff0000'],
       plotOptions: {
         bar: {
           columnWidth: '45%',
@@ -195,7 +195,7 @@ export default class DashboardComponent implements OnInit {
           vertical: 5
         }
       },
-      colors: ['#faad14', '#1890ff'],
+      colors: ['#13c2c2', '#ff0000'],
       series: [
         {
           name: 'Net Profit',
@@ -248,7 +248,7 @@ export default class DashboardComponent implements OnInit {
     dataLabels: {
       enabled: false
     },
-    colors: ['#1890ff', '#13c2c2'],
+    colors: ['#13c2c2', '#dc3545;'],
     series: [
       {
         name: 'Page Views',
@@ -279,7 +279,7 @@ export default class DashboardComponent implements OnInit {
     dataLabels: {
       enabled: false
     },
-    colors: ['#1890ff', '#13c2c2'],
+    colors: ['#13c2c2', '#ff0000'],
     series: [
       {
         name: 'Page Views',
